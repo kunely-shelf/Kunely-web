@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kunely — Un club de lectura, no un contador de páginas</title>
+  <meta name="description" content="Kunely es una app de lectura para iOS y Android, pensada para quien lee por gusto y no quiere que se le convierta en una tarea. En desarrollo.">
+  <meta name="theme-color" content="#f6ede8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e1516" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kunely — Un club de lectura, no un contador de páginas">
+  <meta property="og:description" content="Una app de lectura para quien lee por gusto. En desarrollo.">
+  <meta property="og:image" content="assets/img/mark.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://kit.fontawesome.com/4a7cd294ab.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand" aria-label="Kunely">
+        <picture>
+          <source srcset="assets/img/mark-dark.png" media="(prefers-color-scheme: dark)">
+          <img class="mark" src="assets/img/mark.png" alt="" width="30" height="30">
+        </picture>
+        <picture>
+          <source srcset="assets/img/wordmark-dark.png" media="(prefers-color-scheme: dark)">
+          <img class="wordmark" src="assets/img/wordmark.png" alt="Kunely">
+        </picture>
+      </a>
+      <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">
+        <i class="fa-solid fa-language" aria-hidden="true"></i>
+        <span id="langLabel">EN</span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <picture>
+      <source srcset="assets/img/mark-dark.png" media="(prefers-color-scheme: dark)">
+      <img class="hero-mark" src="assets/img/mark.png" alt="" width="136" height="136">
+    </picture>
+    <picture>
+      <source srcset="assets/img/wordmark-dark.png" media="(prefers-color-scheme: dark)">
+      <img class="hero-wordmark" src="assets/img/wordmark.png" alt="Kunely">
+    </picture>
+    <p class="tagline" data-i18n="hero.tagline">Un club de lectura, no un contador de páginas.</p>
+    <p class="hero-lede" data-i18n="hero.lede">Una app de lectura para iOS y Android, pensada para quien lee por gusto y no quiere que se le convierta en una tarea.</p>
+    <div class="hairline"></div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <p class="eyebrow" data-i18n="do.eyebrow">Lo que sí hacemos</p>
+      <h2 data-i18n="do.title">Tres cosas, y ninguna te pide esfuerzo extra</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="icon"><i class="fa-solid fa-compass" aria-hidden="true"></i></span>
+          <h3 data-i18n="do.discover.title">Descubrir el próximo libro</h3>
+          <p data-i18n="do.discover.desc">Recomendaciones a partir de lo que ya te gusta: una Línea continua para tu terreno conocido y una Línea de aventura para salir de él sin perderte. Y, sobre todo, descubrimiento a través de otras personas.</p>
+        </article>
+        <article class="card">
+          <span class="icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span>
+          <h3 data-i18n="do.talk.title">Conversar sobre lo que leemos</h3>
+          <p data-i18n="do.talk.desc">No es un añadido: es el centro. Conversaciones acotadas a los libros que tienes en curso, y una lista de pendientes que también sirve para encontrarte con quien quiere leer lo mismo. Con protección anti-spoiler tomada en serio.</p>
+        </article>
+        <article class="card">
+          <span class="icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
+          <h3 data-i18n="do.progress.title">Acompañar tu avance</h3>
+          <p data-i18n="do.progress.desc">Tres estados y nada más: por leer, leyendo, terminado. Hay meta mensual y hay racha, pero viven en segundo plano, donde deben estar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <p class="eyebrow" data-i18n="dont.eyebrow">Lo que no</p>
+      <h2 data-i18n="dont.title">Una regla, y no se negocia</h2>
+      <div class="rule">
+        <p data-i18n-html="dont.body">Ninguna función pasa si te hace sentir <strong>medido contra otras personas</strong> o <strong>mal contigo misma</strong>. Sin rankings, sin tablas de posiciones, sin "no leíste hoy".</p>
+        <p data-i18n="dont.note">El estímulo personal entra; la competencia no. Es la pregunta que le hacemos a cada idea antes de construirla.</p>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <p class="eyebrow" data-i18n="news.eyebrow">Novedades</p>
+      <h2 data-i18n="news.title">Todavía no lanzamos, y eso es lo entretenido</h2>
+      <p data-i18n="news.body">Kunely está en desarrollo. Iremos publicando aquí los avances y algún que otro adelanto de pantallas antes de tiempo, para quien tenga curiosidad por ver cómo se construye una app de lectura desde cero.</p>
+      <ul class="facts">
+        <li><strong data-i18n="facts.platforms.label">Plataformas</strong><span data-i18n="facts.platforms.value">iOS y Android</span></li>
+        <li><strong data-i18n="facts.langs.label">Idiomas desde el día uno</strong><span data-i18n="facts.langs.value">Español, inglés y portugués de Brasil</span></li>
+        <li><strong data-i18n="facts.built.label">Hecho con</strong><span data-i18n="facts.built.value">React Native</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="cta-button" href="https://github.com/kunely-shelf" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span data-i18n="news.cta">Seguir el proyecto en GitHub</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p data-i18n="footer.line">Kunely — una app de lectura sin presión, en construcción.</p>
+      <p><a href="https://github.com/kunely-shelf" target="_blank" rel="noopener">github.com/kunely-shelf</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+</body>
+</html>

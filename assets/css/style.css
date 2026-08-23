@@ -1,0 +1,404 @@
+/* Kunely — tokens from the Vellum Design System (src/shared/theme/colors.ts).
+   Reading Chair (light) and Butaca (dark). No greys anywhere: muted text and
+   borders are low-opacity tints of the palette's own ink or blush. */
+
+:root {
+  --linen: #f6ede8;
+  --linen-surface: #fff8f4;
+  --ink: #402a2a;
+  --terracotta: #b4553f;
+  --olive: #7c8b56;
+  --amber: #b07a2b;
+
+  --bg: var(--linen);
+  --surface: var(--linen-surface);
+  --text: var(--ink);
+  --text-secondary: rgba(64, 42, 42, 0.68);
+  --text-muted: rgba(64, 42, 42, 0.45);
+  --border: rgba(64, 42, 42, 0.1);
+  --accent: var(--terracotta);
+  --shadow: 0 10px 30px rgba(64, 42, 42, 0.08);
+  --scroll-thumb: rgba(64, 42, 42, 0.22);
+  --scroll-thumb-hover: rgba(180, 85, 63, 0.55);
+
+  --max: 68rem;
+  --step: clamp(1rem, 0.6rem + 1.6vw, 1.75rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1516;
+    --surface: #2a1e1f;
+    --text: #f2e2dc;
+    --text-secondary: rgba(242, 226, 220, 0.7);
+    --text-muted: rgba(242, 226, 220, 0.45);
+    --border: rgba(242, 226, 220, 0.12);
+    --accent: #d2705a;
+    --olive: #9baf72;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --scroll-thumb: rgba(242, 226, 220, 0.2);
+    --scroll-thumb-hover: rgba(210, 112, 90, 0.65);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Firefox, and Chromium since 121. WebKit still needs the block below. */
+  scrollbar-color: var(--scroll-thumb) var(--bg);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 999px;
+  /* A transparent border with a background clip is what keeps the thumb from
+     touching the track edges; padding does not apply to a scrollbar part. */
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+  background-clip: padding-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Horizontal only. `section` owns the vertical rhythm, and an element carrying
+   both selectors must not have the class clobber it on specificity. */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--step);
+}
+
+/* Navigation ------------------------------------------------------------- */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0.85rem var(--step);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.nav-brand img.mark {
+  width: 30px;
+  height: 30px;
+}
+
+.nav-brand img.wordmark {
+  height: 15px;
+  width: auto;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+  text-align: center;
+  padding: clamp(3.5rem, 9vw, 7rem) var(--step) clamp(2.5rem, 6vw, 4.5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: clamp(2rem, 6vw, 4rem);
+  left: 50%;
+  width: min(420px, 78vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 16%, transparent) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.hero-mark {
+  width: clamp(96px, 18vw, 136px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.hero-wordmark {
+  width: clamp(180px, 34vw, 260px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  position: relative;
+}
+
+.tagline {
+  font-size: clamp(1.25rem, 1rem + 1.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 auto 1rem;
+  max-width: 22ch;
+  position: relative;
+}
+
+.hero-lede {
+  color: var(--text-secondary);
+  max-width: 46ch;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.hairline {
+  width: 72px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Sections --------------------------------------------------------------- */
+
+section {
+  padding-block: clamp(2.75rem, 7vw, 5rem);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.65rem;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
+  line-height: 1.25;
+  margin: 0 0 1.75rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.08rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.cards {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.6rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.card p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+.card .icon {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 0.85rem;
+  display: block;
+}
+
+/* The one rule ----------------------------------------------------------- */
+
+.rule {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 14px;
+  padding: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.rule p {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.rule p:last-child {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
+.rule strong {
+  color: var(--accent);
+}
+
+/* Status ----------------------------------------------------------------- */
+
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.facts li {
+  border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.facts strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.25rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--linen);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.cta-button.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.cta-button.ghost:hover,
+.cta-button.ghost:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Footer ----------------------------------------------------------------- */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0 3rem;
+  color: var(--text-muted);
+  font-size: 0.87rem;
+}
+
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus-visible {
+  color: var(--accent);
+}
+
+/* Respect the reader's motion preference — the same rule the app follows. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
