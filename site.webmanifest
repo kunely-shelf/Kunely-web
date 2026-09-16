@@ -1,0 +1,14 @@
+{
+  "name": "Kunely",
+  "short_name": "Kunely",
+  "description": "Un club de lectura, no un contador de páginas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6EDE8",
+  "theme_color": "#F6EDE8",
+  "icons": [
+    { "src": "/assets/img/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
