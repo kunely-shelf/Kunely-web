@@ -1,5 +1,13 @@
 const translations = {
   es: {
+    'nav.lang.aria': 'Cambiar idioma',
+    'theme.auto': 'Auto',
+    'theme.auto.aria': 'Tema automático, cambiar a claro',
+    'theme.light': 'Claro',
+    'theme.light.aria': 'Tema claro, cambiar a oscuro',
+    'theme.dark': 'Oscuro',
+    'theme.dark.aria': 'Tema oscuro, cambiar a automático',
+
     'hero.tagline': 'Un club de lectura, no un contador de páginas.',
     'hero.lede':
       'Una app de lectura para iOS y Android, pensada para quien lee por gusto y no quiere que se le convierta en una tarea.',
@@ -40,6 +48,14 @@ const translations = {
   },
 
   en: {
+    'nav.lang.aria': 'Change language',
+    'theme.auto': 'Auto',
+    'theme.auto.aria': 'Theme set to automatic, switch to light',
+    'theme.light': 'Light',
+    'theme.light.aria': 'Theme set to light, switch to dark',
+    'theme.dark': 'Dark',
+    'theme.dark.aria': 'Theme set to dark, switch to automatic',
+
     'hero.tagline': 'A book club, not a page counter.',
     'hero.lede':
       'A reading app for iOS and Android, built for people who read for pleasure and would rather it not turn into a chore.',
@@ -120,6 +136,13 @@ const applyLanguage = lang => {
     }
   });
 
+  document.querySelectorAll('[data-i18n-label]').forEach(node => {
+    const value = dictionary[node.dataset.i18nLabel];
+    if (value !== undefined) {
+      node.setAttribute('aria-label', value);
+    }
+  });
+
   const label = document.getElementById('langLabel');
   if (label) {
     // The button offers the other language rather than naming the current one.
@@ -142,3 +165,9 @@ if (toggle) {
     }
   });
 }
+
+// The theme switch relabels its own button and then asks for a re-render, so
+// the new keys resolve in whichever language is currently active.
+document.addEventListener('kunely:retranslate', () => {
+  applyLanguage(current);
+});
