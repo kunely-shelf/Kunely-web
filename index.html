@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kunely — Un club de lectura, no un contador de páginas</title>
   <meta name="description" content="Kunely es una app de lectura para iOS y Android, pensada para quien lee por gusto y no quiere que se le convierta en una tarea. En desarrollo.">
+  <script>
+    // Runs before first paint. A stored choice that disagrees with the OS
+    // would otherwise show the wrong theme for a frame on every load.
+    try {
+      var storedTheme = localStorage.getItem('kunely-theme');
+      if (storedTheme === 'light' || storedTheme === 'dark') {
+        document.documentElement.dataset.theme = storedTheme;
+      }
+    } catch (error) {}
+  </script>
+
   <link rel="canonical" href="https://kunely.app/">
 
   <meta property="og:site_name" content="Kunely">
@@ -39,31 +50,29 @@
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-brand" aria-label="Kunely">
-        <picture>
-          <source srcset="assets/img/mark-dark.svg" media="(prefers-color-scheme: dark)">
-          <img class="mark" src="assets/img/mark.svg" alt="" width="30" height="30">
-        </picture>
-        <picture>
-          <source srcset="assets/img/wordmark-dark.svg" media="(prefers-color-scheme: dark)">
-          <img class="wordmark" src="assets/img/wordmark.svg" alt="Kunely">
-        </picture>
+        <img class="mark brand-light" src="assets/img/mark.svg" alt="" width="30" height="30">
+        <img class="mark brand-dark" src="assets/img/mark-dark.svg" alt="" width="30" height="30">
+        <img class="wordmark brand-light" src="assets/img/wordmark.svg" alt="">
+        <img class="wordmark brand-dark" src="assets/img/wordmark-dark.svg" alt="">
       </a>
-      <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">
-        <i class="fa-solid fa-language" aria-hidden="true"></i>
-        <span id="langLabel">EN</span>
-      </button>
+      <div class="nav-actions">
+        <button class="nav-toggle" id="themeToggle" data-i18n-label="theme.auto.aria" aria-label="Tema automático, cambiar a claro">
+          <i class="fa-solid fa-circle-half-stroke" id="themeIcon" aria-hidden="true"></i>
+          <span id="themeLabel" data-i18n="theme.auto">Auto</span>
+        </button>
+        <button class="nav-toggle" id="langToggle" data-i18n-label="nav.lang.aria" aria-label="Cambiar idioma">
+          <i class="fa-solid fa-language" aria-hidden="true"></i>
+          <span id="langLabel">EN</span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <header class="hero">
-    <picture>
-      <source srcset="assets/img/mark-dark.svg" media="(prefers-color-scheme: dark)">
-      <img class="hero-mark" src="assets/img/mark.svg" alt="" width="136" height="136">
-    </picture>
-    <picture>
-      <source srcset="assets/img/wordmark-dark.svg" media="(prefers-color-scheme: dark)">
-      <img class="hero-wordmark" src="assets/img/wordmark.svg" alt="Kunely">
-    </picture>
+    <img class="hero-mark brand-light" src="assets/img/mark.svg" alt="" width="136" height="136">
+    <img class="hero-mark brand-dark" src="assets/img/mark-dark.svg" alt="" width="136" height="136">
+    <img class="hero-wordmark brand-light" src="assets/img/wordmark.svg" alt="Kunely">
+    <img class="hero-wordmark brand-dark" src="assets/img/wordmark-dark.svg" alt="Kunely">
     <p class="tagline" data-i18n="hero.tagline">Un club de lectura, no un contador de páginas.</p>
     <p class="hero-lede" data-i18n="hero.lede">Una app de lectura para iOS y Android, pensada para quien lee por gusto y no quiere que se le convierta en una tarea.</p>
     <div class="hairline"></div>
@@ -127,5 +136,6 @@
   </footer>
 
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/theme.js"></script>
 </body>
 </html>

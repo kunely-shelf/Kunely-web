@@ -10,6 +10,7 @@
   --olive: #7c8b56;
   --amber: #b07a2b;
 
+  color-scheme: light;
   --bg: var(--linen);
   --surface: var(--linen-surface);
   --text: var(--ink);
@@ -17,6 +18,8 @@
   --text-muted: rgba(64, 42, 42, 0.45);
   --border: rgba(64, 42, 42, 0.1);
   --accent: var(--terracotta);
+  --brand-light-display: block;
+  --brand-dark-display: none;
   --shadow: 0 10px 30px rgba(64, 42, 42, 0.08);
   --scroll-thumb: rgba(64, 42, 42, 0.22);
   --scroll-thumb-hover: rgba(180, 85, 63, 0.55);
@@ -25,8 +28,13 @@
   --step: clamp(1rem, 0.6rem + 1.6vw, 1.75rem);
 }
 
+/* Butaca (dark) is declared twice on purpose. The media query is what keeps
+   dark mode working when JavaScript is off or blocked; the attribute is what
+   the in-page switch sets. The :not() is what lets a reader force light on a
+   system that asks for dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
     --bg: #1e1516;
     --surface: #2a1e1f;
     --text: #f2e2dc;
@@ -34,11 +42,30 @@
     --text-muted: rgba(242, 226, 220, 0.45);
     --border: rgba(242, 226, 220, 0.12);
     --accent: #d2705a;
+    --brand-light-display: none;
+    --brand-dark-display: block;
     --olive: #9baf72;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     --scroll-thumb: rgba(242, 226, 220, 0.2);
     --scroll-thumb-hover: rgba(210, 112, 90, 0.65);
   }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #1e1516;
+  --surface: #2a1e1f;
+  --text: #f2e2dc;
+  --text-secondary: rgba(242, 226, 220, 0.7);
+  --text-muted: rgba(242, 226, 220, 0.45);
+  --border: rgba(242, 226, 220, 0.12);
+  --accent: #d2705a;
+  --brand-light-display: none;
+  --brand-dark-display: block;
+  --olive: #9baf72;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --scroll-thumb: rgba(242, 226, 220, 0.2);
+  --scroll-thumb-hover: rgba(210, 112, 90, 0.65);
 }
 
 *,
@@ -139,7 +166,26 @@ nav {
   width: auto;
 }
 
-.lang-toggle {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Both colour variants of every brand asset ship, and CSS shows one. A
+   <picture> media query cannot do this job: it only ever reads the OS setting
+   and would ignore the in-page switch. A CSS mask could, but Chrome treats an
+   external mask as cross-origin and drops it over file://, which is a
+   documented way to open this page. */
+.brand-light {
+  display: var(--brand-light-display);
+}
+
+.brand-dark {
+  display: var(--brand-dark-display);
+}
+
+.nav-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -155,8 +201,8 @@ nav {
   transition: color 0.2s, border-color 0.2s;
 }
 
-.lang-toggle:hover,
-.lang-toggle:focus-visible {
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
 }
